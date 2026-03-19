@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ant Motor Garage - Pro System</title>
     
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     
+    <!-- Tailwind & Plugins -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -35,7 +37,6 @@
         input[type="checkbox"]:checked + div { background-color: #ea580c; border-color: #ea580c; }
         input[type="checkbox"]:checked + div > i { opacity: 1; }
         #loginOverlay { backdrop-filter: blur(10px); }
-        /* Styling Datalist agar lebih bersih */
         datalist { background-color: #171717; color: white; }
     </style>
 </head>
@@ -48,10 +49,10 @@
                 <span class="text-5xl animate-pulse">🐜</span>
             </div>
             <h1 class="text-3xl font-black text-white mt-4 tracking-tighter uppercase italic">Ant Motor <span class="text-antOrange">Garage</span></h1>
-            <p class="text-silver text-xs font-mono tracking-widest mt-1">PROFESSIONAL WORKSHOP SYSTEM</p>
+            <p class="text-silver text-xs font-mono tracking-widest mt-1 text-center">PROFESSIONAL WORKSHOP SYSTEM</p>
         </div>
         <div class="w-full max-w-sm pro-card p-6">
-            <label class="text-[10px] text-gray-500 font-bold uppercase block mb-2 text-center">AUTHORIZED LOGIN</label>
+            <label class="text-[10px] text-gray-500 font-bold uppercase block mb-2 text-center tracking-widest">AUTHORIZED LOGIN</label>
             <input type="text" id="mechanicNameInput" placeholder="NAMA MEKANIK..." class="pro-input w-full px-4 py-4 text-center font-bold text-lg mb-4 uppercase text-antOrange placeholder:text-gray-800" onkeypress="if(event.key==='Enter') loginMechanic()">
             <button onclick="loginMechanic()" class="w-full py-4 bg-gradient-to-r from-antOrange to-antRed hover:from-antRed hover:to-antOrange text-white font-black uppercase tracking-widest rounded-lg transition-all shadow-lg active:scale-95">
                 AKSES SISTEM
@@ -70,7 +71,7 @@
                 </div>
             </div>
             <div class="flex items-center gap-3">
-                <span id="syncStatus" class="text-[10px] font-mono px-2 py-1 rounded bg-surface border border-gray-700 text-gray-400">OFFLINE</span>
+                <span id="syncStatus" class="text-[10px] font-mono px-2 py-1 rounded bg-surface border border-gray-700 text-gray-400 uppercase">READY</span>
                 <button onclick="openSettings()" class="text-gray-400 hover:text-white transition-colors bg-surfaceLight p-1.5 rounded"><i class="bi bi-sliders text-lg"></i></button>
             </div>
         </div>
@@ -78,27 +79,27 @@
 
     <main class="max-w-xl mx-auto px-4 pt-24 space-y-6 hidden" id="mainContent">
 
-        <!-- Data Kendaraan Pelanggan -->
+        <!-- Info Pelanggan (Excel Suggesstions) -->
         <div class="pro-card p-5 border-t-4 border-t-antOrange shadow-[0_0_20px_rgba(234,88,12,0.1)]">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center"><i class="bi bi-person-vcard text-antOrange mr-2"></i> Data Pelanggan</h3>
-                <span class="text-[9px] text-gray-500 font-mono uppercase">Excel Autocomplete Mode</span>
+                <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2"><i class="bi bi-person-vcard text-antOrange"></i> Info Pelanggan</h3>
+                <span class="text-[8px] text-gray-500 font-mono border border-gray-800 px-1.5 rounded uppercase">Suggestion Mode Active</span>
             </div>
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="text-[10px] text-gray-400 font-bold uppercase block mb-1">Plat Nomor / Nopol</label>
+                    <label class="text-[10px] text-gray-400 font-bold uppercase block mb-1 tracking-tight">Plat Nomor</label>
                     <input list="plateOptions" type="text" id="inputPlate" placeholder="N 1234 ABC" class="pro-input w-full px-3 py-3 text-sm font-mono uppercase font-bold text-white" oninput="refreshVehicleData()" autocomplete="off">
                     <datalist id="plateOptions"></datalist>
                 </div>
                 <div>
-                    <label class="text-[10px] text-gray-400 font-bold uppercase block mb-1">Nama Pemilik</label>
+                    <label class="text-[10px] text-gray-400 font-bold uppercase block mb-1 tracking-tight">Nama Pemilik</label>
                     <input list="customerOptions" type="text" id="inputCustomer" placeholder="Nama Pelanggan" class="pro-input w-full px-3 py-3 text-sm capitalize font-bold" autocomplete="off">
                     <datalist id="customerOptions"></datalist>
                 </div>
             </div>
         </div>
 
-        <!-- Odometer & Diagnostics -->
+        <!-- Diagnostik Mesin -->
         <div class="pro-card p-5 relative overflow-hidden">
             <div class="absolute right-0 top-0 opacity-5 pointer-events-none"><i class="bi bi-speedometer text-[150px]"></i></div>
             
@@ -111,22 +112,22 @@
             <div class="mt-6 pt-5 border-t border-surfaceLight">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xs text-silver font-bold uppercase tracking-widest flex items-center gap-2">
-                        <i class="bi bi-cpu text-antOrange"></i> Diagnostik Mesin 
-                        <span id="diagnosticTarget" class="text-[9px] bg-carbon px-2 py-0.5 rounded text-antOrange border border-antOrange/30 hidden"></span>
+                        <i class="bi bi-cpu text-antOrange"></i> Diagnostik Komponen 
+                        <span id="diagnosticTarget" class="text-[9px] bg-antOrange/10 px-2 py-0.5 rounded text-antOrange border border-antOrange/30 hidden font-bold"></span>
                     </h3>
                 </div>
                 <div id="diagnosticContainer" class="space-y-4">
-                    <p class="text-xs text-gray-500 font-mono text-center py-4 border border-dashed border-gray-700 rounded bg-carbon/50 uppercase italic">Scan plat & km untuk riwayat part</p>
+                    <p class="text-[10px] text-gray-500 font-mono text-center py-6 border border-dashed border-gray-800 rounded bg-carbon/30 uppercase tracking-widest italic">Scanning System Ready...</p>
                 </div>
             </div>
         </div>
 
-        <!-- Form Record Service -->
+        <!-- Servis Order -->
         <div class="pro-card p-5">
-            <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center"><i class="bi bi-tools text-antOrange mr-2"></i> Tindakan Servis</h3>
+            <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center"><i class="bi bi-tools text-antOrange mr-2"></i> Work Order</h3>
             
             <div class="mb-4">
-                <label class="text-[10px] text-gray-500 font-bold uppercase block mb-2">Pilih Pekerjaan / Part</label>
+                <label class="text-[10px] text-gray-500 font-bold uppercase block mb-2">Item Pekerjaan</label>
                 <div class="grid grid-cols-2 gap-2" id="partsChecklist"></div>
                 
                 <label class="relative flex items-center p-3 mt-2 rounded-lg border border-surfaceLight bg-surface hover:border-gray-500 cursor-pointer transition-colors group">
@@ -134,15 +135,15 @@
                     <div class="w-4 h-4 rounded border border-gray-500 mr-3 flex items-center justify-center transition-colors">
                         <i class="bi bi-check text-white text-xs opacity-0 transition-opacity"></i>
                     </div>
-                    <span class="text-xs text-gray-300 font-medium select-none">Lainnya (Pekerjaan Kustom)</span>
+                    <span class="text-xs text-gray-300 font-medium select-none">Pekerjaan Tambahan (Lainnya)</span>
                 </label>
-                <input type="text" id="inputCustomPart" placeholder="Contoh: Turun Mesin, Ganti Ban..." class="pro-input w-full px-3 py-2 text-xs mt-2 hidden">
+                <input type="text" id="inputCustomPart" placeholder="Sebutkan detail pekerjaan..." class="pro-input w-full px-3 py-3 text-xs mt-2 hidden">
             </div>
 
             <div class="grid grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="text-[10px] text-gray-400 font-bold uppercase block mb-1">Tanggal</label>
-                    <input type="date" id="inputDate" class="pro-input w-full px-3 py-3 text-sm">
+                    <input type="date" id="inputDate" class="pro-input w-full px-3 py-3 text-sm font-mono">
                 </div>
                 <div>
                     <label class="text-[10px] text-gray-400 font-bold uppercase block mb-1">Biaya Total (Rp)</label>
@@ -151,24 +152,23 @@
             </div>
 
             <div class="mb-5">
-                <label class="text-[10px] text-gray-500 font-bold uppercase block mb-1">Catatan Mekanik</label>
-                <input type="text" id="inputNote" placeholder="Keterangan tambahan bengkel..." class="pro-input w-full px-3 py-3 text-sm">
+                <label class="text-[10px] text-gray-500 font-bold uppercase block mb-1 tracking-tight">Keterangan Mekanik / Catatan</label>
+                <input type="text" id="inputNote" placeholder="e.g. Masukan untuk pelanggan..." class="pro-input w-full px-3 py-3 text-sm">
             </div>
 
-            <button id="btnSave" onclick="saveRecord()" class="w-full py-4 bg-antOrange hover:bg-antRed text-white font-black uppercase tracking-widest rounded-lg transition-colors active:scale-95 disabled:opacity-50 flex justify-center items-center gap-2 shadow-[0_0_15px_rgba(234,88,12,0.4)]">
-                <i class="bi bi-floppy-fill"></i> SIMPAN INVOICE
+            <button id="btnSave" onclick="saveRecord()" class="w-full py-4 bg-antOrange hover:bg-antRed text-white font-black uppercase tracking-widest rounded-lg transition-colors active:scale-95 disabled:opacity-50 flex justify-center items-center gap-2 shadow-[0_0_20px_rgba(234,88,12,0.3)]">
+                <i class="bi bi-cloud-arrow-up-fill text-lg"></i> SIMPAN & SYNC CLOUD
             </button>
         </div>
 
         <!-- History -->
         <div class="pro-card p-5">
-            <div class="flex justify-between items-center mb-4 border-b border-surfaceLight pb-2">
+            <div class="flex justify-between items-center mb-4 border-b border-surfaceLight pb-3">
                 <div class="flex flex-col">
                     <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
                         <i class="bi bi-receipt text-gray-400"></i> 
-                        <span id="historyTitle">LOG RIWAYAT BENGKEL</span>
+                        <span id="historyTitle">AKTIVITAS BENGKEL</span>
                     </h3>
-                    <p id="historySubtitle" class="text-[9px] text-gray-500 font-mono">Menampilkan aktivitas bengkel terbaru</p>
                 </div>
                 <button onclick="shareWhatsApp()" class="text-[10px] bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded font-bold flex items-center gap-1 shadow-lg">
                     <i class="bi bi-whatsapp"></i> STRUK WA
@@ -183,32 +183,39 @@
     <!-- Settings Modal -->
     <div id="settingsModal" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" onclick="closeSettings()"></div>
-        <div class="absolute bottom-0 w-full bg-surface border-t border-antOrange p-6 animate-slide-up max-h-[85vh] overflow-y-auto rounded-t-2xl">
+        <div class="absolute bottom-0 w-full bg-surface border-t border-antOrange p-6 animate-slide-up max-h-[85vh] overflow-y-auto rounded-t-2xl shadow-2xl">
             <div class="flex justify-between items-center mb-6">
-                <h3 class="text-lg font-black text-white uppercase tracking-tight"><i class="bi bi-database text-antOrange mr-2"></i> Integrasi Server</h3>
+                <h3 class="text-lg font-black text-white uppercase tracking-tight"><i class="bi bi-sliders text-antOrange mr-2"></i> Konfigurasi Sistem</h3>
                 <button onclick="closeSettings()" class="text-gray-400 hover:text-white bg-surfaceLight p-2 rounded-full"><i class="bi bi-x-lg"></i></button>
             </div>
 
             <div class="space-y-5">
                 <div>
-                    <label class="text-[10px] text-gray-400 font-bold uppercase block mb-1">Google Sheets API URL</label>
+                    <label class="text-[10px] text-gray-400 font-bold uppercase block mb-1">Google Apps Script API URL</label>
                     <div class="relative">
                         <input type="url" id="settingUrl" placeholder="https://script.google.com/macros/s/..." class="pro-input w-full px-3 py-3 text-sm font-mono" onfocus="showUrlHistory()" autocomplete="off">
                         <div id="urlHistoryDropdown" class="hidden absolute top-full left-0 w-full mt-1 bg-carbon border border-surfaceLight rounded-lg shadow-xl overflow-hidden z-50"></div>
                     </div>
+                    <p class="text-[9px] text-gray-500 mt-1 uppercase italic tracking-tighter">URL di atas adalah default. Hapus dan biarkan kosong untuk me-reset ke URL bawaan Ant Garage.</p>
                 </div>
                 
-                <div class="bg-carbon p-3 rounded-lg border border-surfaceLight flex justify-between items-center">
-                    <span id="settingsMechanic" class="text-xs text-antOrange font-bold uppercase">MEKANIK: GUEST</span>
-                    <button onclick="logoutMechanic()" class="text-[10px] bg-antRed text-white px-3 py-1 rounded uppercase font-bold">Logout</button>
+                <div class="bg-carbon p-4 rounded-lg border border-surfaceLight flex justify-between items-center">
+                    <div>
+                        <p class="text-[9px] text-gray-500 uppercase font-bold tracking-widest">Active Personnel</p>
+                        <span id="settingsMechanic" class="text-sm text-antOrange font-black">GUEST</span>
+                    </div>
+                    <button onclick="logoutMechanic()" class="text-[10px] bg-antRed text-white px-4 py-2 rounded uppercase font-bold shadow-lg shadow-red-900/30">LOGOUT</button>
                 </div>
 
-                <button onclick="saveSettings()" class="w-full py-4 bg-white text-black font-black uppercase tracking-widest rounded-lg">SIMPAN PENGATURAN</button>
+                <button onclick="saveSettings()" class="w-full py-4 bg-white text-black font-black uppercase tracking-widest rounded-lg shadow-xl">SIMPAN PERUBAHAN</button>
             </div>
         </div>
     </div>
 
     <script>
+        // --- 🟢 FACTORY DEFAULT API URL ---
+        const FACTORY_URL = "https://script.google.com/macros/s/AKfycbwxGT4HiPoez_YeLvgXtPFC8ILX7UWuBbT_hXe5Jm4OJStasx45FkEnlMGXzbrhLd_lGQ/exec";
+
         const PARTS = [
             { id: 'tuneup', name: 'Tune Up / Servis Ringan', interval: 4000, icon: 'bi-wrench-adjustable' },
             { id: 'oli_mesin', name: 'Oli Mesin', interval: 2500, icon: 'bi-droplet-fill' },
@@ -218,11 +225,21 @@
             { id: 'filter_udara', name: 'Filter Udara', interval: 15000, icon: 'bi-wind' },
             { id: 'vbelt', name: 'V-Belt / Rantai', interval: 24000, icon: 'bi-nut-fill' },
             { id: 'coolant', name: 'Air Radiator', interval: 12000, icon: 'bi-thermometer-half' },
-            { id: 'injector', name: 'Bersih Injector', interval: 10000, icon: 'bi-funnel-fill' }
+            { id: 'injector', name: 'Pembersihan Injector', interval: 10000, icon: 'bi-funnel-fill' }
         ];
 
         let activeMechanic = localStorage.getItem('ant_mechanic') || '';
-        let appConfig = JSON.parse(localStorage.getItem('ant_config')) || { webAppUrl: '', baselines: {} };
+        
+        // Memuat Config dengan Semi-Permanen logic
+        function loadAppConfig() {
+            let saved = JSON.parse(localStorage.getItem('ant_config')) || {};
+            // Jika kosong atau tidak ada URL, gunakan FACTORY_URL
+            if (!saved.webAppUrl) saved.webAppUrl = FACTORY_URL;
+            if (!saved.baselines) saved.baselines = {};
+            return saved;
+        }
+
+        let appConfig = loadAppConfig();
         let historyData = JSON.parse(localStorage.getItem('ant_history')) || [];
         let syncQueue = JSON.parse(localStorage.getItem('ant_queue')) || [];
         let urlHistory = JSON.parse(localStorage.getItem('ant_url_history')) || [];
@@ -231,7 +248,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             if (!activeMechanic) { document.getElementById('loginOverlay').classList.remove('hidden'); } 
             else { initApp(); }
-            
+
             document.addEventListener('click', (e) => {
                 const input = document.getElementById('settingUrl');
                 const dropdown = document.getElementById('urlHistoryDropdown');
@@ -239,13 +256,11 @@
             });
         });
 
-        function cleanPlate(plate) {
-            return plate ? plate.toString().replace(/[^A-Z0-9]/gi, '').toUpperCase() : '';
-        }
+        function cleanPlate(plate) { return plate ? plate.toString().replace(/[^A-Z0-9]/gi, '').toUpperCase() : ''; }
 
         function loginMechanic() {
             const name = document.getElementById('mechanicNameInput').value.trim().toUpperCase();
-            if(!name) return alertErr('Masukkan Nama Mekanik!');
+            if(!name) return alertErr('Identitas Mekanik Diperlukan!');
             activeMechanic = name;
             localStorage.setItem('ant_mechanic', activeMechanic);
             document.getElementById('loginOverlay').style.opacity = '0';
@@ -253,33 +268,30 @@
         }
 
         function logoutMechanic() {
-            closeSettings(); activeMechanic = ''; localStorage.removeItem('ant_mechanic');
+            activeMechanic = ''; localStorage.removeItem('ant_mechanic');
             location.reload();
         }
 
         function initApp() {
             document.getElementById('mainHeader').classList.remove('hidden');
             document.getElementById('mainContent').classList.remove('hidden');
-            document.getElementById('settingsMechanic').innerText = `MEKANIK: ${activeMechanic}`;
+            document.getElementById('settingsMechanic').innerText = activeMechanic;
             document.getElementById('inputDate').valueAsDate = new Date();
             
-            updateInputSuggestions(); // Update Datalists
+            updateInputSuggestions(); 
             renderPartsChecklist();
             refreshVehicleData(); 
             checkQueue();
         }
 
-        // --- SISTEM SUGGESTION (EXCEL STYLE) ---
         function updateInputSuggestions() {
-            // 1. Suggestion Plat Nomor
+            // Excel-style Autocomplete for Plates
             const plates = [...new Set(historyData.map(tx => tx.plate.toUpperCase()))];
-            const plateDatalist = document.getElementById('plateOptions');
-            plateDatalist.innerHTML = plates.map(p => `<option value="${p}">`).join('');
+            document.getElementById('plateOptions').innerHTML = plates.map(p => `<option value="${p}">`).join('');
 
-            // 2. Suggestion Nama Pelanggan
+            // Excel-style Autocomplete for Customers
             const customers = [...new Set(historyData.map(tx => tx.customer))].filter(c => c && c !== 'Guest');
-            const customerDatalist = document.getElementById('customerOptions');
-            customerDatalist.innerHTML = customers.map(c => `<option value="${c}">`).join('');
+            document.getElementById('customerOptions').innerHTML = customers.map(c => `<option value="${c}">`).join('');
         }
 
         function renderPartsChecklist() {
@@ -299,25 +311,24 @@
 
         function toggleCustomPart(checkbox) {
             const input = document.getElementById('inputCustomPart');
-            if (checkbox.checked) { input.classList.remove('hidden'); input.focus(); } 
-            else { input.classList.add('hidden'); input.value = ''; }
+            checkbox.checked ? input.classList.remove('hidden') : input.classList.add('hidden');
         }
 
         function refreshVehicleData() {
             const rawPlate = document.getElementById('inputPlate').value.trim().toUpperCase();
             const normPlate = cleanPlate(rawPlate);
 
-            // AUTO-FILL NAMA PELANGGAN JIKA PLAT COCOK
+            // Auto-link Customer from Plate
             if (normPlate.length >= 3) {
                 const vehicleHistory = historyData.filter(tx => cleanPlate(tx.plate) === normPlate);
                 if (vehicleHistory.length > 0) {
-                    const lastTx = vehicleHistory.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+                    const sortedHistory = [...vehicleHistory].sort((a, b) => new Date(b.date) - new Date(a.date));
+                    const lastTx = sortedHistory[0];
                     if (lastTx.customer && lastTx.customer !== 'Guest') {
                         document.getElementById('inputCustomer').value = lastTx.customer;
                     }
                 }
             }
-
             runDiagnostics();
             renderHistoryList();
         }
@@ -333,7 +344,7 @@
 
             if (normPlate.length < 3 || currentKM === 0) {
                 badge.classList.add('hidden');
-                container.innerHTML = `<p class="text-xs text-gray-500 font-mono text-center py-4 border border-dashed border-gray-700 rounded bg-carbon/50 uppercase italic tracking-tighter">Masukkan Plat & KM untuk Scan</p>`;
+                container.innerHTML = `<p class="text-[10px] text-gray-500 font-mono text-center py-6 border border-dashed border-gray-800 rounded bg-carbon/30 uppercase tracking-widest italic">Scanning System Ready...</p>`;
                 return;
             }
 
@@ -345,9 +356,7 @@
             PARTS.forEach(part => {
                 const reversedHistory = [...vehicleHistory].reverse();
                 const lastService = reversedHistory.find(tx => tx.parts.includes(part.name));
-                
                 const baselineKey = `${normPlate}_${part.id}`;
-                appConfig.baselines = appConfig.baselines || {};
                 
                 let lastKM = lastService ? lastService.km : (appConfig.baselines[baselineKey] || 0);
                 let hasHistory = !!lastService;
@@ -357,24 +366,23 @@
 
                 let color = 'bg-success'; 
                 let badgeTxt = 'SAFE';
-                
-                if (used < 0) { color = 'bg-gray-600'; badgeTxt = 'ERR: KM'; } 
-                else if (currentKM >= nextKM) { color = 'bg-antRed animate-pulse'; badgeTxt = 'REPLACE NOW'; } 
+                if (used < 0) { color = 'bg-gray-600'; badgeTxt = 'KM ERR'; } 
+                else if (currentKM >= nextKM) { color = 'bg-antRed animate-pulse'; badgeTxt = 'REPLACE'; } 
                 else if (currentKM >= nextKM - 500) { color = 'bg-warning'; badgeTxt = 'SOON'; }
 
-                let editBtn = !hasHistory ? `<button onclick="setBaseline('${normPlate}', '${part.id}', '${part.name}')" class="ml-2 text-gray-600 hover:text-white transition-colors" title="Set KM Awal Part Ini"><i class="bi bi-pencil-square text-[9px]"></i></button>` : '';
+                let editBtn = !hasHistory ? `<button onclick="setBaseline('${normPlate}', '${part.id}', '${part.name}')" class="ml-2 text-gray-600 hover:text-white transition-colors" title="Set KM Awal"><i class="bi bi-pencil-square text-[9px]"></i></button>` : '';
 
                 container.innerHTML += `
                     <div class="bg-surface border border-surfaceLight p-3 rounded-lg">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="text-[11px] text-white font-bold uppercase tracking-wider"><i class="bi ${part.icon} mr-1"></i> ${part.name}</span>
-                            <span class="text-[10px] font-black ${badgeTxt === 'SAFE' ? 'text-success' : (badgeTxt === 'SOON' ? 'text-warning' : 'text-antRed')}">${badgeTxt}</span>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-[11px] text-white font-bold uppercase"><i class="bi ${part.icon} mr-1 text-gray-500"></i> ${part.name}</span>
+                            <span class="text-[9px] font-black ${badgeTxt === 'SAFE' ? 'text-success' : (badgeTxt === 'SOON' ? 'text-warning' : 'text-antRed')} bg-carbon px-1.5 rounded border border-white/5 tracking-tighter">${badgeTxt}</span>
                         </div>
-                        <div class="flex justify-between items-center text-[10px] font-mono text-gray-500 mb-1.5">
-                            <span>Terakhir: ${lastKM.toLocaleString('id-ID')} ${editBtn}</span>
-                            <span>Batas: <span class="text-white font-bold">${nextKM.toLocaleString('id-ID')}</span></span>
+                        <div class="flex justify-between text-[9px] font-mono text-gray-500 mb-1.5">
+                            <span>Last: ${lastKM.toLocaleString('id-ID')} ${editBtn}</span>
+                            <span>Limit: <span class="text-white">${nextKM.toLocaleString('id-ID')} KM</span></span>
                         </div>
-                        <div class="h-1 w-full bg-carbon rounded-full overflow-hidden">
+                        <div class="h-1 w-full bg-carbon rounded-full overflow-hidden border border-gray-800">
                             <div class="h-full ${color} bar-transition" style="width: ${Math.max(0, progress)}%"></div>
                         </div>
                     </div>
@@ -384,9 +392,9 @@
 
         async function setBaseline(normPlate, partId, partName) {
             const { value: kmInput } = await Swal.fire({
-                title: 'SET RECORD AWAL',
-                html: `<span class="text-xs text-gray-400">Kapan terakhir ganti <b>${partName}</b> untuk motor ini?</span>`,
-                input: 'number', inputPlaceholder: 'Masukkan KM Speedometer...',
+                title: 'INITIAL RECORD',
+                html: `<span class="text-xs text-gray-400 uppercase font-bold tracking-widest text-center block">KM TERAKHIR GANTI ${partName}</span>`,
+                input: 'number', inputPlaceholder: 'Masukkan angka odometer...',
                 background: '#171717', color: '#fff', confirmButtonColor: '#ea580c'
             });
             if (kmInput) {
@@ -401,22 +409,19 @@
             const rawPlate = document.getElementById('inputPlate').value.trim();
             const normPlate = cleanPlate(rawPlate);
             const titleEl = document.getElementById('historyTitle');
-            const subtitleEl = document.getElementById('historySubtitle');
             
             container.innerHTML = '';
             
             let displayData = historyData;
             if (normPlate.length >= 2) {
                 displayData = historyData.filter(tx => cleanPlate(tx.plate) === normPlate);
-                titleEl.innerText = "RIWAYAT KENDARAAN";
-                subtitleEl.innerText = `Catatan servis untuk ${rawPlate.toUpperCase()}`;
+                titleEl.innerText = "RIWAYAT MOTOR: " + rawPlate.toUpperCase();
             } else {
-                titleEl.innerText = "LOG RIWAYAT BENGKEL";
-                subtitleEl.innerText = "Aktivitas terbaru semua pelanggan";
+                titleEl.innerText = "LOG AKTIVITAS BENGKEL";
             }
 
             if (displayData.length === 0) {
-                container.innerHTML = `<p class="text-xs text-gray-500 font-mono text-center py-8 uppercase border border-dashed border-gray-800 rounded-xl">Data Tidak Ditemukan</p>`;
+                container.innerHTML = `<div class="p-8 border border-dashed border-gray-800 rounded-xl text-center"><i class="bi bi-folder-x text-3xl text-gray-800"></i><p class="text-xs text-gray-600 font-mono mt-2 uppercase tracking-tighter">Database Entry Empty</p></div>`;
                 return;
             }
 
@@ -428,18 +433,18 @@
                     <div class="p-4 bg-carbon border border-surfaceLight rounded-xl hover:border-gray-600 transition-colors">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <h4 class="text-sm font-black text-white uppercase italic">${tx.plate}</h4>
-                                <p class="text-[10px] text-gray-500 font-mono uppercase">${tgl} • ${tx.km.toLocaleString('id-ID')} KM • ${tx.customer}</p>
+                                <h4 class="text-sm font-black text-white uppercase italic tracking-tighter">${tx.plate}</h4>
+                                <p class="text-[9px] text-gray-500 font-mono uppercase">${tgl} • ${tx.km.toLocaleString('id-ID')} KM • BY: ${tx.mechanic}</p>
                             </div>
                             <div class="text-right">
-                                <span class="text-sm font-black text-success">${tx.cost > 0 ? formatRupiah(tx.cost) : 'FREE'}</span>
-                                <button onclick="deleteRecord('${tx.id}')" class="block ml-auto mt-1 text-gray-700 hover:text-antRed"><i class="bi bi-trash text-sm"></i></button>
+                                <span class="text-xs font-black text-success">${tx.cost > 0 ? formatRupiah(tx.cost) : 'FREE'}</span>
+                                <button onclick="deleteRecord('${tx.id}')" class="block ml-auto mt-1 text-gray-700 hover:text-antRed transition-colors"><i class="bi bi-trash text-sm"></i></button>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-1 mt-2">
-                            ${tx.parts.split(", ").map(p => `<span class="px-2 py-0.5 bg-surface border border-gray-800 rounded text-[9px] font-bold text-silver uppercase">${p}</span>`).join('')}
+                            ${tx.parts.split(", ").map(p => `<span class="px-1.5 py-0.5 bg-surface border border-gray-800 rounded text-[8px] font-bold text-silver uppercase">${p}</span>`).join('')}
                         </div>
-                        ${tx.note ? `<p class="text-[9px] text-yellow-600 font-mono mt-2 uppercase italic leading-tight border-t border-gray-800 pt-2">> ${tx.note}</p>` : ''}
+                        ${tx.note ? `<p class="text-[9px] text-yellow-600/70 font-mono mt-2 uppercase border-t border-gray-900 pt-2 tracking-tighter leading-tight italic">>> ${tx.note}</p>` : ''}
                     </div>
                 `;
             });
@@ -459,11 +464,11 @@
                 selectedParts.push(document.getElementById('inputCustomPart').value.trim());
             }
 
-            if (!plate || !currentKM || selectedParts.length === 0) return alertErr('Lengkapi Plat, KM, dan minimal 1 Part!');
+            if (!plate || !currentKM || selectedParts.length === 0) return alertErr('Lengkapi data Plat, KM, & Item Servis!');
 
             const btn = document.getElementById('btnSave');
             btn.disabled = true;
-            btn.innerHTML = '<i class="bi bi-gear animate-spin"></i> MEMPROSES...';
+            btn.innerHTML = '<i class="bi bi-cpu animate-spin"></i> SYNCING...';
 
             const txId = 'ANT' + Date.now(); 
             const newRecord = {
@@ -477,7 +482,7 @@
             syncQueue.push({ action: 'insert', data: newRecord });
             localStorage.setItem('ant_queue', JSON.stringify(syncQueue));
 
-            // Reset UI
+            // UI Reset
             document.getElementById('inputCost').value = '';
             document.getElementById('inputNote').value = '';
             document.getElementById('inputCustomPart').classList.add('hidden');
@@ -487,13 +492,12 @@
             refreshVehicleData(); 
             processQueue(); 
 
-            setTimeout(() => { btn.disabled = false; btn.innerHTML = '<i class="bi bi-floppy-fill"></i> SIMPAN INVOICE'; }, 1000);
+            setTimeout(() => { btn.disabled = false; btn.innerHTML = '<i class="bi bi-cloud-arrow-up-fill text-lg"></i> SIMPAN & SYNC CLOUD'; }, 1000);
         }
 
         function deleteRecord(id) {
             Swal.fire({
-                title: 'HAPUS INVOICE?', text: "Data akan dihapus permanen.",
-                icon: 'warning', showCancelButton: true, confirmButtonColor: '#dc2626', background: '#171717', color: '#fff'
+                title: 'HAPUS INVOICE?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#dc2626', background: '#171717', color: '#fff'
             }).then((res) => {
                 if (res.isConfirmed) {
                     historyData = historyData.filter(i => i.id !== id);
@@ -512,48 +516,60 @@
             const normPlate = cleanPlate(rawPlate);
             let vehicleHistory = historyData;
             if (normPlate) vehicleHistory = historyData.filter(tx => cleanPlate(tx.plate) === normPlate);
-            if (vehicleHistory.length === 0) return alertErr("Belum ada data untuk motor ini.");
+            if (vehicleHistory.length === 0) return alertErr("Belum ada riwayat transaksi.");
             
-            const sortedData = [...vehicleHistory].sort((a,b)=>new Date(a.date)-new Date(b.date));
-            const latest = sortedData[sortedData.length - 1];
+            const sortedHistory = [...vehicleHistory].sort((a,b)=>new Date(a.date)-new Date(b.date));
+            const latest = sortedHistory[sortedHistory.length - 1];
             const dateStr = new Date(latest.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric'});
-            const text = `🏢 *ANT MOTOR GARAGE*\n_Professional Workshop System_\n==========================\n📅 Tanggal : ${dateStr}\n👤 Pelanggan: ${latest.customer}\n🏍️ Plat No : *${latest.plate}*\n📟 Odometer : ${latest.km.toLocaleString('id-ID')} KM\n\n🛠️ *RINCIAN SERVIS:*\n${latest.parts.split(", ").map(p => `• ${p}`).join("\n")}\n📝 *Catatan:* ${latest.note || '-'}\n\n💵 *TOTAL BIAYA: ${formatRupiah(latest.cost)}*\n==========================\n_Terima kasih telah mempercayakan kendaraan Anda di Ant Motor Garage._ 🐜🏁`;
+            
+            const text = `🏢 *ANT MOTOR GARAGE*\n==========================\n📅 Tanggal : ${dateStr}\n👨‍🔧 Mekanik : ${latest.mechanic}\n👤 Pelanggan: ${latest.customer}\n🏍️ Plat No : *${latest.plate}*\n📟 Odometer : ${latest.km.toLocaleString('id-ID')} KM\n\n🛠️ *RINCIAN SERVIS:*\n${latest.parts.split(", ").map(p => `• ${p}`).join("\n")}\n\n💵 *TOTAL BIAYA: ${formatRupiah(latest.cost)}*\n==========================\n_Terima kasih telah servis di Ant Motor Garage._ 🐜🏁`;
             window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
         }
 
         function setSyncStatus(text, state) {
             const el = document.getElementById('syncStatus');
             el.innerHTML = text;
-            if(state === 'sync') el.className = 'text-[9px] font-mono px-2 py-1 rounded bg-yellow-900/30 text-yellow-500 animate-pulse border border-yellow-700';
-            if(state === 'ok') el.className = 'text-[9px] font-mono px-2 py-1 rounded bg-green-900/30 text-green-500 border border-green-700';
-            if(state === 'err') el.className = 'text-[9px] font-mono px-2 py-1 rounded bg-red-900/30 text-red-500 border border-red-700';
+            if(state === 'sync') el.className = 'text-[9px] font-mono px-2 py-1 rounded bg-yellow-900/30 text-yellow-500 animate-pulse border border-yellow-700 uppercase';
+            if(state === 'ok') el.className = 'text-[9px] font-mono px-2 py-1 rounded bg-green-900/30 text-green-500 border border-green-700 uppercase';
+            if(state === 'err') el.className = 'text-[9px] font-mono px-2 py-1 rounded bg-red-900/30 text-red-500 border border-red-700 uppercase';
         }
 
         async function processQueue() {
             if (syncQueue.length === 0 || !appConfig.webAppUrl || isSyncing) return;
-            isSyncing = true; setSyncStatus('SYNCING...', 'sync');
+            isSyncing = true; setSyncStatus('SYNCING', 'sync');
             const item = syncQueue[0];
             let payload = item.action === 'delete' ? { action: 'delete', id: item.id } : { action: 'insert', id: item.data.id, timestamp: item.data.timestamp, record: item.data };
 
             try {
                 await fetch(appConfig.webAppUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(payload) });
                 syncQueue.shift(); localStorage.setItem('ant_queue', JSON.stringify(syncQueue));
-                if (syncQueue.length > 0) { isSyncing = false; processQueue(); } else { setSyncStatus('CLOUD CONNECTED', 'ok'); }
+                if (syncQueue.length > 0) { isSyncing = false; processQueue(); } else { setSyncStatus('ONLINE', 'ok'); }
             } catch (e) { setSyncStatus('OFFLINE', 'err'); } finally { isSyncing = false; }
         }
 
-        function checkQueue() { syncQueue.length > 0 ? processQueue() : (appConfig.webAppUrl ? setSyncStatus('CLOUD CONNECTED', 'ok') : setSyncStatus('NO CLOUD', 'err')); }
-        function openSettings() { document.getElementById('settingUrl').value = appConfig.webAppUrl || ''; document.getElementById('settingsModal').classList.remove('hidden'); }
-        function closeSettings() { document.getElementById('settingsModal').classList.add('hidden'); document.getElementById('urlHistoryDropdown').classList.add('hidden'); }
+        function checkQueue() { syncQueue.length > 0 ? processQueue() : setSyncStatus('READY', 'ok'); }
+        
+        function openSettings() { 
+            // Pastikan input menampilkan URL yang sedang aktif
+            document.getElementById('settingUrl').value = appConfig.webAppUrl; 
+            document.getElementById('settingsModal').classList.remove('hidden'); 
+        }
+        
+        function closeSettings() { document.getElementById('settingsModal').classList.add('hidden'); }
+        
         function saveSettings() {
-            appConfig.webAppUrl = document.getElementById('settingUrl').value.trim();
+            const newUrl = document.getElementById('settingUrl').value.trim();
+            
+            // Logika Semi-Permanen: Jika dikosongkan, reset ke Factory URL
+            appConfig.webAppUrl = newUrl || FACTORY_URL;
             localStorage.setItem('ant_config', JSON.stringify(appConfig));
-            if (appConfig.webAppUrl.startsWith('http')) {
-                urlHistory = urlHistory.filter(u => u !== appConfig.webAppUrl); urlHistory.unshift(appConfig.webAppUrl); 
+            
+            if (newUrl.startsWith('http')) {
+                urlHistory = urlHistory.filter(u => u !== newUrl); urlHistory.unshift(newUrl); 
                 if(urlHistory.length > 3) urlHistory.pop(); localStorage.setItem('ant_url_history', JSON.stringify(urlHistory));
             }
             closeSettings(); checkQueue();
-            Swal.fire({ toast: true, position: 'top', icon: 'success', title: 'Config Saved', showConfirmButton: false, timer: 1500, background: '#171717', color: '#fff' });
+            Swal.fire({ toast: true, position: 'top', icon: 'success', title: 'Config Updated', showConfirmButton: false, timer: 1500, background: '#171717', color: '#fff' });
         }
 
         function showUrlHistory() {
@@ -567,7 +583,7 @@
         function removeUrl(event, url) { event.stopPropagation(); urlHistory = urlHistory.filter(u => u !== url); localStorage.setItem('ant_url_history', JSON.stringify(urlHistory)); showUrlHistory(); }
         function formatInputRupiah(input) { let val = input.value.replace(/[^0-9]/g, ''); input.value = val === '' ? '' : new Intl.NumberFormat('id-ID').format(val); }
         function formatRupiah(num) { return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(num); }
-        function alertErr(msg) { Swal.fire({ icon: 'error', title: 'ERROR', text: msg, background: '#171717', color: '#fff', confirmButtonColor: '#ea580c' }); }
+        function alertErr(msg) { Swal.fire({ icon: 'error', title: 'STOP', text: msg, background: '#171717', color: '#fff', confirmButtonColor: '#ea580c' }); }
     </script>
 </body>
 </html>
